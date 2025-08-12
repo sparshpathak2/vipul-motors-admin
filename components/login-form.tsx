@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import { LoginPayload } from "@/lib/types"
 import { loginUser } from "@/services/auth"
+import toast from "react-hot-toast";
 
 export function LoginForm({
     className,
@@ -27,53 +28,45 @@ export function LoginForm({
         })
     }
 
-    // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault()
-    //     setError(null)
-    //     setLoading(true)
-
-    //     try {
-    //         const res = await loginUser(formData)
-    //         if (res.success) {
-    //             console.log("✅ Login successful", res.data)
-    //             // TODO: Redirect to dashboard or set localStorage/session
-    //         } else {
-    //             setError(res.error || "Login failed")
-    //         }
-    //     } catch (err) {
-    //         console.error(err)
-    //         setError("Something went wrong. Please try again.")
-    //     } finally {
-    //         setLoading(false)
-    //     }
-    // }
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        setError(null)
-        setLoading(true)
+        e.preventDefault();
+        setError(null);
+        setLoading(true);
 
         try {
-            const res = await loginUser(formData)
+            const res = await loginUser(formData);
+
             if (res.success) {
-                console.log("✅ Login successful", res.data)
 
-                // Set session with 30 min expiry (adjust TTL as needed)
-                const ttl = 30 * 60 * 1000 // 30 minutes in milliseconds
-                setWithExpiry("userSession", res.data, ttl)
+                // Set session with 30 min expiry
+                const ttl = 30 * 60 * 1000;
+                setWithExpiry("userSession", res.data, ttl);
 
-                // Redirect to dashboard or desired page
-                window.location.href = "/queries"
+                // Redirect
+                window.location.href = "/queries";
             } else {
-                setError(res.error || "Login failed")
+
+                let errorMsg;
+
+                // if (res.error === "Invalid credentials") {
+                if (res.error === "Invalid credentials") {
+                    errorMsg = "Invalid username or password.";
+                } else {
+                    errorMsg = "Something went wrong. Please try again.";
+                }
+
+                setError(errorMsg);
+                toast.error(errorMsg);
             }
         } catch (err) {
-            console.error(err)
-            setError("Something went wrong. Please try again.")
+            console.error(err);
+            const errorMsg = "Something went wrong. Please try again later.";
+            setError(errorMsg);
+            toast.error(errorMsg);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
 
 

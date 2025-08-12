@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "@/components/SessionProvider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider>
+          {/* ✅ React Hot Toast Toaster */}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 5000,
+              style: {
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                border: "1px solid #e2e8f0",
+                borderRadius: "8px",
+              },
+            }}
+          />
           {children}
         </SessionProvider>
       </body>

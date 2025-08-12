@@ -501,39 +501,39 @@ export const columns: ColumnDef<Query>[] = [
 
     },
 
-    {
-        id: "actions",
-        size: 4,
-        minSize: 4,
-        maxSize: 4,
-        enableHiding: false,
-        // header: "Options",
-        cell: ({ row }) => {
-            const payment = row.original
+    // {
+    //     id: "actions",
+    //     size: 4,
+    //     minSize: 4,
+    //     maxSize: 4,
+    //     enableHiding: false,
+    //     // header: "Options",
+    //     cell: ({ row }) => {
+    //         const payment = row.original
 
-            return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
-                        >
-                            Copy payment ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            )
-        },
-    },
+    //         return (
+    //             <DropdownMenu>
+    //                 <DropdownMenuTrigger asChild>
+    //                     <Button variant="ghost" className="h-8 w-8 p-0">
+    //                         <span className="sr-only">Open menu</span>
+    //                         <MoreHorizontal />
+    //                     </Button>
+    //                 </DropdownMenuTrigger>
+    //                 <DropdownMenuContent align="end">
+    //                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
+    //                     <DropdownMenuItem
+    //                         onClick={() => navigator.clipboard.writeText(payment.id)}
+    //                     >
+    //                         Copy payment ID
+    //                     </DropdownMenuItem>
+    //                     <DropdownMenuSeparator />
+    //                     <DropdownMenuItem>View customer</DropdownMenuItem>
+    //                     <DropdownMenuItem>View payment details</DropdownMenuItem>
+    //                 </DropdownMenuContent>
+    //             </DropdownMenu>
+    //         )
+    //     },
+    // },
 ]
 
 export function DataTableDemo() {
