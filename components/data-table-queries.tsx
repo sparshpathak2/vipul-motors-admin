@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
+import * as XLSX from "xlsx";
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -579,23 +580,46 @@ export function DataTableDemo() {
         },
     })
 
+    // 👇 Export to Excel handler
+    const handleExportExcel = () => {
+        const exportData = queries.map(q => ({
+            Id: q.id,
+            Name: q.name,
+            Email: q.email || "-",
+            Mobile: q.mobile,
+            Location: q.location,
+            Message: q.message || "",
+            Source: q.source,
+            Date: new Date(q.createdAt).toLocaleDateString("en-IN", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+            }),
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Queries");
+        XLSX.writeFile(workbook, "queries.xlsx");
+    };
+
     return (
         <div className="w-full">
             <div className="flex items-center py-4 gap-4">
                 <Input
-                    placeholder="Filter emails..."
-                    value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+                    placeholder="Filter name..."
+                    value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
-                        table.getColumn("email")?.setFilterValue(event.target.value)
+                        table.getColumn("name")?.setFilterValue(event.target.value)
                     }
                     className="max-w-sm"
                 />
                 <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
+                    {/* <DropdownMenuTrigger asChild>
                         <Button variant="outline" className="ml-auto">
                             Columns <ChevronDown />
                         </Button>
-                    </DropdownMenuTrigger>
+                    </DropdownMenuTrigger> */}
                     <DropdownMenuContent align="end">
                         {table
                             .getAllColumns()
@@ -616,6 +640,10 @@ export function DataTableDemo() {
                             })}
                     </DropdownMenuContent>
                 </DropdownMenu>
+
+                <Button variant="default" onClick={handleExportExcel} className="cursor-pointer">
+                    Export All
+                </Button>
             </div>
             <div className="overflow-hidden rounded-md border">
                 <Table>

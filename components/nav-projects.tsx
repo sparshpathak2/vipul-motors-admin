@@ -45,7 +45,8 @@ export function NavProjects({
             <SidebarMenu>
                 {projects.map((item) => {
                     const isActive = pathname.includes(item.url)
-                    const isDisabled = item.name === "Webpages"
+                    // const isDisabled = item.name === "Webpages"
+                    const isDisabled = false
 
                     return (
                         <SidebarMenuItem key={item.name}>

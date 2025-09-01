@@ -147,12 +147,12 @@ const data = {
     projects: [
         {
             name: "Leads",
-            url: "queries",
+            url: "/queries",
             icon: Users,
         },
         {
             name: "Webpages",
-            url: "webpages",
+            url: "/webpages",
             icon: LaptopMinimal,
         },
     ],

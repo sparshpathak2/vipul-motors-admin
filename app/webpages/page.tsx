@@ -1,7 +1,7 @@
 "use client"
 
 import { AppSidebar } from "@/components/app-sidebar"
-import { DataTableDemo } from "@/components/data-table-queries"
+import { DataTableDemo } from "@/components/data-table-webpages"
 import { SessionContext } from "@/components/SessionProvider"
 import {
     Breadcrumb,
