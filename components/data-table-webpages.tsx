@@ -45,11 +45,11 @@ export const data: Webpages[] = [
         name: "Homepage",
         href: "/homepage",
     },
-    // {
-    //     no: "2",
-    //     name: "True Value",
-    //     href: "/true-value",
-    // }
+    {
+        no: "2",
+        name: "True Value",
+        href: "/true-value",
+    }
 ];
 
 export type Webpages = {

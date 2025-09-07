@@ -641,9 +641,11 @@ export function DataTableDemo() {
                     </DropdownMenuContent>
                 </DropdownMenu>
 
-                <Button variant="default" onClick={handleExportExcel} className="cursor-pointer">
-                    Export All
-                </Button>
+                <div className="flex w-full justify-end">
+                    <Button variant="default" onClick={handleExportExcel} className="cursor-pointer">
+                        Export All
+                    </Button>
+                </div>
             </div>
             <div className="overflow-hidden rounded-md border">
                 <Table>
