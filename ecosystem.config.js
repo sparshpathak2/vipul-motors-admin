@@ -6,7 +6,7 @@ module.exports = {
             script: "node_modules/next/dist/bin/next",
             args: "start -p 3001 -H 127.0.0.1",
             // cwd: "/home/ubuntu/vipul-motors/vipul-motors-admin-panel",
-            cwd: "/home/ubuntu/vipul-motors-admin-panel",
+            cwd: "/home/ubuntu/vipul-motors-admin",
 
             watch: false,
             autorestart: true,
