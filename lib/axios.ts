@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000/api', // adjust according to backend
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "/api", // fallback to /api
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
